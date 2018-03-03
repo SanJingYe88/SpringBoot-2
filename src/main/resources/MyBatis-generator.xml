@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<!-- 自动生成的代码不要注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 配置数据库连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/springboot_test" userId="root"
+			password="root">
+		</jdbcConnection>
+		<!-- Oracle -->
+		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
+			userId="root" password="root"> </jdbcConnection> -->
+
+		<!-- 默认 false, 把 JDBC DECIMAL 和 NUMERIC 类型解析为 Integer. 如果设置为 true 时, 把JDBC 
+			DECIMAL 和 NUMERIC 类型解析为 java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定 实体类 生成的位置 -->
+		<javaModelGenerator targetPackage="it.com.entity" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!--指定 mapper 映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 指定 dao 接口生成的位置, mapper 接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="it.com.dao" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- table 指定每个表的生成策略, tableName 属性对应数据库中的表名, domainObjectName 是数据库中的表生成的实体类的名字 -->
+		<table tableName="EMPLOYEE" domainObjectName="Employee"></table>
+	<!-- 	<table tableName="DEPT" domainObjectName="Dept"></table> -->
+
+		<!-- 有些表的字段需要指定java类型 <table schema="" tableName=""> <columnOverride column="" 
+			javaType="" /> </table> -->
+	</context>
+</generatorConfiguration>
